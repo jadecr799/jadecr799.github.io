@@ -1,11 +1,627 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>myfirstpage</title>
-    </head>
-    <body>
-       <img src="images/154c2cdc11e8cbdf457310323825.jpg">
-       <p>@pikaboyandgirl</p>
-       <p>we are pika's</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes Battlegrounds MHA Ideas</title>
+    <style>
+        :root {
+            --primary: #e63946;
+            --secondary: #457b9d;
+            --light: #f1faee;
+            --dark: #1d3557;
+            --accent: #a8dadc;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: var(--secondary);
+            padding: 0.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .active {
+            background-color: var(--primary);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+        
+        .modal-content {
+            background-color: white;
+            max-width: 500px;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        input, textarea, button {
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c1272d;
+        }
+        
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .hero-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .hero-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hero-img {
+            height: 200px;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-info {
+            padding: 1.5rem;
+        }
+        
+        .hero-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .hero-info p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .ability {
+            background-color: #f5f5f5;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+        
+        .ability h4 {
+            color: var(--secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .post-idea {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .welcome-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-container h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        #loginStatus {
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Heroes Battlegrounds: MHA Ideas Hub</h1>
+        <p>Share and discover character ideas for Heroes Battlegrounds</p>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <a href="#" id="homeNav" class="active">Home</a>
+        <a href="#" id="loginNav">Login</a>
+        <a href="#" id="signupNav">Sign Up</a>
+        <a href="#" id="logoutNav" style="display: none;">Logout</a>
+    </nav>
+    
+    <div id="loginStatus"></div>
+    
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Page Content (Default View) -->
+        <div id="homePage">
+            <div class="welcome-container">
+                <h2>Welcome to the Heroes Battlegrounds MHA Ideas Hub!</h2>
+                <p>This is where the community shares character ideas for Heroes Battlegrounds on Roblox. Login or sign up to post your own ideas!</p>
+            </div>
+            
+            <div class="post-idea">
+                <button id="postIdeaBtn" disabled>Post Your MHA Character Idea</button>
+            </div>
+            
+            <h2>Community Ideas</h2>
+            
+            <div class="hero-cards">
+                <!-- Character Card 1 -->
+                <div class="hero-card">
+                    <div class="hero-img">
+                        <img src="/api/placeholder/250/150" alt="Deku Character Concept" />
+                    </div>
+                    <div class="hero-info">
+                        <h3>Deku (One For All 100%)</h3>
+                        <p>A powerful all-around fighter with high mobility and devastating final moves.</p>
+                        
+                        <div class="ability">
+                            <h4>Air Force</h4>
+                            <p>Medium range attack that deals moderate damage and has a knockback effect.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Full Cowling</h4>
+                            <p>Mobility skill that increases movement speed by 50% for 10 seconds.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Delaware Smash</h4>
+                            <p>Close range attack with high damage and short cooldown.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Ultimate: United States of Smash</h4>
+                            <p>AoE attack that deals massive damage to all enemies in range.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Character Card 2 -->
+                <div class="hero-card">
+                    <div class="hero-img">
+                        <img src="/api/placeholder/250/150" alt="Todoroki Character Concept" />
+                    </div>
+                    <div class="hero-info">
+                        <h3>Todoroki</h3>
+                        <p>Versatile fighter with both ranged and area control abilities.</p>
+                        
+                        <div class="ability">
+                            <h4>Ice Wall</h4>
+                            <p>Creates an ice barrier that blocks projectiles and slows enemies.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Flame Burst</h4>
+                            <p>Medium range flame attack that deals damage over time.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Flash Freeze</h4>
+                            <p>Short-range AoE that freezes enemies in place for 2 seconds.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Ultimate: Heaven-Piercing Ice Wall</h4>
+                            <p>Creates a massive ice structure that damages and traps enemies.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Character Card 3 -->
+                <div class="hero-card">
+                    <div class="hero-img">
+                        <img src="/api/placeholder/250/150" alt="Bakugo Character Concept" />
+                    </div>
+                    <div class="hero-info">
+                        <h3>Bakugo</h3>
+                        <p>Aggressive fighter with explosive mobility and high damage output.</p>
+                        
+                        <div class="ability">
+                            <h4>Explosion Rush</h4>
+                            <p>Dash attack that deals damage to enemies in path.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>AP Shot</h4>
+                            <p>Focused explosion with high piercing damage at medium range.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Howitzer Impact</h4>
+                            <p>Spinning aerial attack that creates an explosion on landing.</p>
+                        </div>
+                        
+                        <div class="ability">
+                            <h4>Ultimate: Cluster Explosion</h4>
+                            <p>Multiple powerful explosions around Bakugo, dealing massive AoE damage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Post Idea Modal -->
+    <div id="postIdeaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Post Your MHA Character Idea</h2>
+            <form id="postIdeaForm">
+                <input type="text" id="characterName" placeholder="Character Name" required>
+                <textarea id="characterDescription" placeholder="Brief description of the character" rows="3" required></textarea>
+                
+                <h3>Abilities</h3>
+                <input type="text" id="ability1Name" placeholder="Ability 1 Name" required>
+                <textarea id="ability1Description" placeholder="Ability 1 Description" rows="2" required></textarea>
+                
+                <input type="text" id="ability2Name" placeholder="Ability 2 Name" required>
+                <textarea id="ability2Description" placeholder="Ability 2 Description" rows="2" required></textarea>
+                
+                <input type="text" id="ability3Name" placeholder="Ability 3 Name" required>
+                <textarea id="ability3Description" placeholder="Ability 3 Description" rows="2" required></textarea>
+                
+                <input type="text" id="ultimateName" placeholder="Ultimate Ability Name" required>
+                <textarea id="ultimateDescription" placeholder="Ultimate Ability Description" rows="2" required></textarea>
+                
+                <button type="submit">Submit Character Idea</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Heroes Battlegrounds MHA Ideas Hub | Fan-made content</p>
+    </footer>
+    
+    <script>
+        // User authentication state
+        let isLoggedIn = false;
+        let currentUser = null;
+        
+        // DOM Elements
+        const homeNav = document.getElementById('homeNav');
+        const loginNav = document.getElementById('loginNav');
+        const signupNav = document.getElementById('signupNav');
+        const logoutNav = document.getElementById('logoutNav');
+        const loginStatus = document.getElementById('loginStatus');
+        const postIdeaBtn = document.getElementById('postIdeaBtn');
+        
+        // Modals
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const postIdeaModal = document.getElementById('postIdeaModal');
+        
+        // Forms
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const postIdeaForm = document.getElementById('postIdeaForm');
+        
+        // Close buttons
+        const closeButtons = document.querySelectorAll('.close');
+        
+        // Navigation event listeners
+        homeNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            setActiveNav(homeNav);
+        });
+        
+        loginNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+        });
+        
+        signupNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'block';
+        });
+        
+        logoutNav.addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+        });
+        
+        postIdeaBtn.addEventListener('click', function() {
+            if (isLoggedIn) {
+                postIdeaModal.style.display = 'block';
+            } else {
+                loginModal.style.display = 'block';
+            }
+        });
+        
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'none';
+                postIdeaModal.style.display = 'none';
+            });
+        });
+        
+        // Click outside modal to close
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === signupModal) {
+                signupModal.style.display = 'none';
+            }
+            if (e.target === postIdeaModal) {
+                postIdeaModal.style.display = 'none';
+            }
+        });
+        
+        // Form submissions
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simple login validation (in real app, this would be server-side)
+            if (username && password) {
+                login(username);
+                loginModal.style.display = 'none';
+                loginForm.reset();
+            }
+        });
+        
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('signupUsername').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            // Simple validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (username && email && password) {
+                // In a real app, this would create a new user in the database
+                login(username);
+                signupModal.style.display = 'none';
+                signupForm.reset();
+                alert('Account created successfully!');
+            }
+        });
+        
+        postIdeaForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const characterName = document.getElementById('characterName').value;
+            const characterDescription = document.getElementById('characterDescription').value;
+            
+            // In a real app, this would save to a database
+            alert(`Your character idea for ${characterName} has been submitted!`);
+            postIdeaModal.style.display = 'none';
+            postIdeaForm.reset();
+            
+            // Create and add the new character card to the page
+            addCharacterCard(
+                characterName,
+                characterDescription,
+                document.getElementById('ability1Name').value,
+                document.getElementById('ability1Description').value,
+                document.getElementById('ability2Name').value,
+                document.getElementById('ability2Description').value,
+                document.getElementById('ability3Name').value,
+                document.getElementById('ability3Description').value,
+                document.getElementById('ultimateName').value,
+                document.getElementById('ultimateDescription').value
+            );
+        });
+        
+        // Helper functions
+        function setActiveNav(navElement) {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            navElement.classList.add('active');
+        }
+        
+        function login(username) {
+            isLoggedIn = true;
+            currentUser = username;
+            
+            // Update UI
+            loginNav.style.display = 'none';
+            signupNav.style.display = 'none';
+            logoutNav.style.display = 'inline-block';
+            postIdeaBtn.disabled = false;
+            
+            loginStatus.textContent = `Welcome, ${username}!`;
+            loginStatus.style.backgroundColor = '#4CAF50';
+            loginStatus.style.color = 'white';
+        }
+        
+        function logout() {
+            isLoggedIn = false;
+            currentUser = null;
+            
+            // Update UI
+            loginNav.style.display = 'inline-block';
+            signupNav.style.display = 'inline-block';
+            logoutNav.style.display = 'none';
+            postIdeaBtn.disabled = true;
+            
+            loginStatus.textContent = '';
+            loginStatus.style.backgroundColor = '';
+        }
+        
+        function addCharacterCard(name, description, ability1Name, ability1Desc, ability2Name, ability2Desc, ability3Name, ability3Desc, ultName, ultDesc) {
+            // Create card elements
+            const heroCards = document.querySelector('.hero-cards');
+            
+            const card = document.createElement('div');
+            card.className = 'hero-card';
+            
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'hero-img';
+            
+            const img = document.createElement('img');
+            img.src = '/api/placeholder/250/150';
+            img.alt = name + ' Character Concept';
+            
+            const info = document.createElement('div');
+            info.className = 'hero-info';
+            
+            const title = document.createElement('h3');
+            title.textContent = name;
+            
+            const desc = document.createElement('p');
+            desc.textContent = description;
+            
+            // Build and append elements
+            imgContainer.appendChild(img);
+            info.appendChild(title);
+            info.appendChild(desc);
+            
+            // Add abilities
+            addAbility(info, ability1Name, ability1Desc);
+            addAbility(info, ability2Name, ability2Desc);
+            addAbility(info, ability3Name, ability3Desc);
+            addAbility(info, ultName, ultDesc, true);
+            
+            card.appendChild(imgContainer);
+            card.appendChild(info);
+            
+            // Add to the beginning of the cards list
+            heroCards.insertBefore(card, heroCards.firstChild);
+        }
+        
+        function addAbility(container, name, description, isUltimate = false) {
+            const ability = document.createElement('div');
+            ability.className = 'ability';
+            
+            const abilityName = document.createElement('h4');
+            abilityName.textContent = isUltimate ? `Ultimate: ${name}` : name;
+            
+            const abilityDesc = document.createElement('p');
+            abilityDesc.textContent = description;
+            
+            ability.appendChild(abilityName);
+            ability.appendChild(abilityDesc);
+            
+            container.appendChild(ability);
+        }
+    </script>
+</body>
 </html>
